@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    margin: 0;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-right : 10px;
+}
+
+.product {
+    margin: 20px;
+   
+    text-align: center;
+}
+
+.product img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#qrContainer {
+    margin-top: 30px;
+   
+}
+
+#qrcode img {
+    width: 200px;
+    height: 200px;
+}

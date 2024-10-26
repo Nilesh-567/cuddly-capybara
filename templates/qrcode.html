@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page with Buy Now</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='qrcode.css') }}">
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</head>
+<body>
+    <h1>Products</h1>
+    <div class="product-container">
+        {% for image, price in products %}
+        <div class="product">
+            <img src="{{ url_for('static', filename=image) }}" alt="Product Image">
+            <p>Price: ₹{{ price }}</p>
+            <div class="quantity-selector">
+                <button class="minus-btn" data-index="{{ loop.index }}">-</button>
+                <span class="quantity-display" id="quantity-{{ loop.index }}">1</span>
+                <button class="plus-btn" data-index="{{ loop.index }}">+</button>
+            </div>
+            <select class="upi-select" id="upi-select-{{ loop.index }}">
+                <option value="paytm">Paytm</option>
+                <option value="googlepay">Google Pay</option>
+                <option value="phonepe">PhonePe</option>
+            </select>
+            <button class="buy-btn" data-amount="{{ price }}" data-index="{{ loop.index }}">Buy Now</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Spinner Element -->
+    <div id="loading-spinner" class="spinner" style="display: none;">
+        <div class="spin"></div>
+    </div>
+
+    <!-- Payment Option Modal -->
+    <div id="payment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Select Payment Method</h3>
+            <button id="scan-pay">Scan QR Code</button>
+            <button id="vpa-pay">Enter VPA</button>
+        </div>
+    </div>
+
+    <!-- VPA Entry Form -->
+    <div id="vpa-form" class="vpa-form" style="display: none;">
+        <label for="vpa-input">Enter your UPI ID:</label>
+        <input type="text" id="vpa-input" placeholder="e.g. john@upi">
+        <button id="vpa-submit" data-amount="" data-index="">Submit</button>
+    </div>
+
+    <!-- QR Code Display Area -->
+    <div id="qrcode-display"></div>
+
+</body>
+</html>

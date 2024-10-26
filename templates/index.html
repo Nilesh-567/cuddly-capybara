@@ -1,19 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-Commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
+    <h1>Products</h1>
+    <div class="product-list">
+        {% for product in products %}
+        <div class="product-item">
+            <h2>{{ product.name }}</h2>
+            <p>Price: ₹{{ product.price }}</p>
+            <form action="{{ url_for('payment', product_id=product.id) }}" method="get">
+                <button type="submit">Buy Now</button>
+            </form>
+        </div>
+        {% endfor %}
     </div>
 </body>
-
 </html>

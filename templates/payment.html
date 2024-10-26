@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Payment for {{ product.name }}</h1>
+    <p>Product Price: ₹{{ product.price }}</p>
+
+    <form action="" method="POST">
+        <label for="add_donation">
+            <input type="checkbox" name="add_donation" id="add_donation"> Add Donation
+        </label>
+
+        <div id="donation_section" style="display: none;">
+            <label for="donation">Enter Donation Amount:</label>
+            <input type="number" name="donation" id="donation" min="1" placeholder="Enter amount">
+        </div>
+
+        <br><br>
+        <button type="submit">Confirm Payment</button>
+    </form>
+
+    <script>
+        const addDonationCheckbox = document.getElementById('add_donation');
+        const donationSection = document.getElementById('donation_section');
+
+        addDonationCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                donationSection.style.display = 'block';
+            } else {
+                donationSection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
